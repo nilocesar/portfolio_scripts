@@ -349,34 +349,36 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 				$("body").focus();
 				$("body").keydown(function(e) 
 				{
-				  	var _delta = 0;
-
-					e.preventDefault();
-					if (e.which == 38 ) 
+					if( !$.browser.msie )
 					{
-						_delta = 1;
-					}
-					else if(e.which == 40 ) 
-					{
-					_delta = -1;	
-					}
+						var _delta = 0;
 
-					var vel=Math.abs( _delta*mousewheelVel );
-					var posY=mCSB_dragger.position().top-( _delta*vel);
-					mCSB_dragger.css("top",posY);
-					if(mCSB_dragger.position().top<0){
-						mCSB_dragger.css("top",0);
-					}
-					var mCSB_draggerContainerH=mCSB_draggerContainer.height(),
-						mCSB_draggerH=mCSB_dragger.height();
-					if(mCSB_dragger.position().top>mCSB_draggerContainerH-mCSB_draggerH)
-					{
-						mCSB_dragger.css("top",mCSB_draggerContainerH-mCSB_draggerH);
-					}
+						e.preventDefault();
+						if (e.which == 38 ) 
+						{
+							_delta = 1;
+						}
+						else if(e.which == 40 ) 
+						{
+						_delta = -1;	
+						}
 
-					$this.mCustomScrollbar("scroll");
-					return false;
+						var vel=Math.abs( _delta*mousewheelVel );
+						var posY=mCSB_dragger.position().top-( _delta*vel);
+						mCSB_dragger.css("top",posY);
+						if(mCSB_dragger.position().top<0){
+							mCSB_dragger.css("top",0);
+						}
+						var mCSB_draggerContainerH=mCSB_draggerContainer.height(),
+							mCSB_draggerH=mCSB_dragger.height();
+						if(mCSB_dragger.position().top>mCSB_draggerContainerH-mCSB_draggerH)
+						{
+							mCSB_dragger.css("top",mCSB_draggerContainerH-mCSB_draggerH);
+						}
 
+						$this.mCustomScrollbar("scroll");
+						return false;
+					}
 				});
 
 				//////////
